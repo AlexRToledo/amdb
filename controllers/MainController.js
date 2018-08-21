@@ -2,7 +2,7 @@ const config = require('../config');
 
 const view = __dirname + config.view_path;
 const path = config.path;
-let logguer = true;
+let logguer = false;
 
 class MainController {
     constructor($app) {
