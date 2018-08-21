@@ -1,0 +1,9 @@
+{
+  "path": "/amdb",
+  "view_path": "./../views",
+  "assets_path": "/assets",
+  "credentials": {
+    "user": "jmjcsoftware",
+    "password": "jmjcsoftware"
+  }
+}
