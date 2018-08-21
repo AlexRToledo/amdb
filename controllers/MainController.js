@@ -18,14 +18,14 @@ class MainController {
     async Index(req, res, next) {
         if(logguer !== false) {
             // logguer = false;
-            res.render(`${view}/index`);
+            res.render(`${view}/index`, {title: 'Dashboard'});
         } else {
             res.redirect(`${path}/login`);
         }
     }
 
     async Login(req, res) {
-        res.render(`${view}/login`);
+        res.render(`${view}/login`, {title: 'Login'});
     }
 
     async LoginAction(req, res) {
