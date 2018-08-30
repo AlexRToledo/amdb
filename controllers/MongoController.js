@@ -48,7 +48,7 @@ class MongoController {
 
     async DeleteAllCollection(req, res) {
         try {
-            let collections = req.body.data;
+            let collections = req.body;
             let json = await Json.Json(await Manager.DropAllCollection(collections), "Collections deleted.");
             res.json(json);
         } catch (e) {
@@ -145,7 +145,7 @@ class MongoController {
 
     async ClearAllCollection(req, res) {
         try {
-            let collections = req.body.data;
+            let collections = req.body;
             let json = await Json.Json(await Manager.ClearAllCollection(collections), "Collections cleared.");
             res.json(json);
         } catch (e) {

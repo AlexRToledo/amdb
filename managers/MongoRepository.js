@@ -46,7 +46,7 @@ class MongoRepository {
         try {
             let db = await this.Load();
             collections.forEach(async (collect) => {
-                await db.collection((collect)).drop();
+                await db.collection((collect.name)).drop();
             });
             return [];
         } catch (e) {
@@ -67,7 +67,7 @@ class MongoRepository {
         try {
             let db = await this.Load();
             collections.forEach(async (collect) => {
-                await db.collection(collect).remove({});
+                await db.collection(collect.name).remove({});
             });
             return [];
         } catch (e) {
