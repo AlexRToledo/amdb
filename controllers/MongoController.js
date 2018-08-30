@@ -16,7 +16,9 @@ class MongoController {
         this.app.post(`${path}/collections/create`,            this.CreateNewCollection);
         this.app.post(`${path}/collections/:doc/rename`,       this.RenameCollection);
         this.app.delete(`${path}/collections/:doc/remove`,     this.DeleteCollection);
+        this.app.delete(`${path}/collections/remove`,          this.DeleteAllCollection);
         this.app.delete(`${path}/collections/:doc/clear`,      this.ClearCollection);
+        this.app.delete(`${path}/collections/clear`,           this.ClearAllCollection);
 
         this.app.get(`${path}/collection/:doc`,               this.GetAllDocumentsByCollection);
         this.app.get(`${path}/collection/:doc/:id`,           this.GetDocumentById);
@@ -38,6 +40,16 @@ class MongoController {
         try {
             let collection = req.params.doc;
             let json = await Json.Json(await Manager.DropCollection(collection), "Collection deleted.");
+            res.json(json);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async DeleteAllCollection(req, res) {
+        try {
+            let collections = req.body.data;
+            let json = await Json.Json(await Manager.DropAllCollection(collections), "Collections deleted.");
             res.json(json);
         } catch (e) {
             console.log(e);
@@ -125,6 +137,16 @@ class MongoController {
         try {
             let collection = req.params.doc;
             let json = await Json.Json(await Manager.ClearCollection(collection), "Collection cleared.");
+            res.json(json);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async ClearAllCollection(req, res) {
+        try {
+            let collections = req.body.data;
+            let json = await Json.Json(await Manager.ClearAllCollection(collections), "Collections cleared.");
             res.json(json);
         } catch (e) {
             console.log(e);

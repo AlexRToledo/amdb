@@ -42,12 +42,36 @@ class MongoRepository {
         }
     }
 
+    async DropAllCollection(collections) {
+        try {
+            let db = await this.Load();
+            collections.forEach(async (collect) => {
+                await db.collection((collect)).drop();
+            });
+            return [];
+        } catch (e) {
+
+        }
+    }
+
     async ClearCollection(name) {
         try {
             let db = await this.Load();
             return await db.collection(name).remove({});
         } catch (e) {
             
+        }
+    }
+
+    async ClearAllCollection(collections) {
+        try {
+            let db = await this.Load();
+            collections.forEach(async (collect) => {
+                await db.collection(collect).remove({});
+            });
+            return [];
+        } catch (e) {
+
         }
     }
 
